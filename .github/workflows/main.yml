@@ -7,6 +7,10 @@ on:
         description: '要拉取的 DockerHub 镜像名称'
         required: true
         default: 'nginx'
+      platform:
+        description: 'Docker 镜像架构（默认：amd64）'
+        required: false
+        default: 'linux/amd64'
       tag:
         description: 'Docker 镜像标签（默认：latest）'
         required: false
@@ -34,7 +38,7 @@ jobs:
 
       - name: 从DockerHub拉取Docker镜像
         run: |
-          docker pull ${{ inputs.dockerhub_image }}:${{ inputs.tag }}
+          docker pull --platform ${{ inputs.platform }} ${{ inputs.dockerhub_image }}:${{ inputs.tag }}
 
       - name: 设置小写的 GitHub 用户名
         run: echo "ACTOR_LOWER=$(echo '${{ github.actor }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
