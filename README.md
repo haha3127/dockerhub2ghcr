@@ -39,6 +39,7 @@
 
 - **dockerhub_image**: `nginx`
 - **tag**: `latest`
+- **platform**: `linux/amd64`
 - **ghcr_image**: `my-nginx`
 
 完成后，GitHub Actions 会自动拉取 DockerHub 镜像，并推送到 GHCR.IO。
